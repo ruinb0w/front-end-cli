@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm install --production=false && npm run build"
   },
   "dependencies": {
     "chalk": "^4.1.2",
