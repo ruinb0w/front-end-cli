@@ -15,14 +15,19 @@ program
   .action(createCommand);
 
 program
-  .command('cli-update')
-  .description('Check for updates cli tool')
-  .action(checkUpdate);
-
-program
   .command('generate view <component-name>')
   .alias('g')
   .description('Generate a new view component')
   .action(generateViewCommand);
 
+program
+  .command('generate com <component-name>')
+  .alias('g')
+  .description('Generate a reusable component')
+  .action(generateViewCommand);
+
+program
+  .command('cli-update')
+  .description('Check for updates cli tool')
+  .action(checkUpdate);
 program.parse(process.argv);
