@@ -1,16 +1,18 @@
 import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
+import { findProjectRoot } from "../utils/file";
 
-export async function generateViewCommand(componentName: string) {
+export async function generateViewCommand(type: string, componentName: string) {
   // Validate the input format (must be PascalCase, e.g., AbcDef)
-  const pascalCaseRegex = /^[A-Z][a-zA-Z0-9]*$/;
+  const pascalCaseRegex = /^[A-Z][a-z0-9]+([A-Z][a-z0-9]+)*$/;
   if (!pascalCaseRegex.test(componentName)) {
-    console.error(chalk.red('Error: Component name must be in PascalCase (e.g., AbcDef)'));
+    console.error(chalk.red(`Error: Component name ${type} "${componentName}" must be in PascalCase (e.g., AbcDef)`));
     process.exit(1);
   }
 
-  const viewsDir = path.join(process.cwd(), 'src', 'views');
+  const projectRoot = findProjectRoot(process.cwd());
+  const viewsDir = path.join(projectRoot, 'src', 'views');
   const componentDir = path.join(viewsDir, componentName);
   const componentFilePath = path.join(componentDir, `${componentName}.vue`);
 
@@ -29,7 +31,6 @@ export async function generateViewCommand(componentName: string) {
     if (!fs.existsSync(componentFilePath)) {
       // Convert PascalCase to kebab-case (e.g., AbcDef -> abc-def)
       const kebabCaseName = componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-
       const componentContent = `<script setup lang="ts">
 
 </script>

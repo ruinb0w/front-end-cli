@@ -21,7 +21,7 @@ program
 
 program
   .command('generate view <component-name>')
-  .alias('g view <component-name>')
+  .alias('g')
   .description('Generate a new view component')
   .action(generateViewCommand);
 
