@@ -1,0 +1,27 @@
+{
+  "name": "cli-tool",
+  "version": "1.0.0",
+  "description": "A CLI tool for creating projects from templates",
+  "main": "lib/index.js",
+  "bin": {
+    "cli-tool": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "execa": "^6.1.0",
+    "inquirer": "^12.5.2",
+    "latest-version": "^7.0.0",
+    "semver": "^7.3.8"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/semver": "^7.7.0",
+    "typescript": "^5.8.3"
+  }
+}
