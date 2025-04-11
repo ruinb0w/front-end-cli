@@ -1,6 +1,7 @@
 import { Command } from 'commander';
 import { createCommand } from './commands/create';
 import { checkUpdate } from './commands/update';
+import { generateViewCommand } from './commands/generate';
 
 const program = new Command();
 
@@ -17,5 +18,11 @@ program
   .command('cli-update')
   .description('Check for updates cli tool')
   .action(checkUpdate);
+
+program
+  .command('generate view <component-name>')
+  .alias('g view <component-name>')
+  .description('Generate a new view component')
+  .action(generateViewCommand);
 
 program.parse(process.argv);
