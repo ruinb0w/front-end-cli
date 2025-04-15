@@ -4,7 +4,7 @@
   "description": "A CLI tool for creating projects from templates",
   "main": "lib/index.js",
   "bin": {
-    "cli-tool": "./bin/cli.js"
+    "fli": "./bin/cli.js"
   },
   "scripts": {
     "build": "tsc",

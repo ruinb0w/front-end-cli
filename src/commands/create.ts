@@ -16,9 +16,7 @@ export async function createCommand(projectName: string, options: any) {
     let templateUrl = options.template;
     if (!templateUrl) {
       const templates = [
-        { name: 'Default Template', value: 'https://github.com/username/default-template.git' },
-        { name: 'React Starter', value: 'https://github.com/username/react-starter.git' },
-        { name: 'Node.js API', value: 'https://github.com/username/node-api.git' },
+        { name: 'vue3', value: 'https://github.com/ruinb0w/vue3-template.git' },
       ];
 
       const answers = await inquirer.prompt([
