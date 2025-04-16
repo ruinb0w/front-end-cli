@@ -49,6 +49,10 @@ export async function createCommand(projectName: string, options: any) {
     await execa('git', ['init'], { cwd: projectName });
 
     console.log(chalk.green(`Project ${projectName} created successfully!`));
+    console.log();
+    console.log(chalk.blue('Usage:'));
+    console.log(chalk.blue(`  cd ${projectName}`));
+    console.log(chalk.blue(`  yarn`));
   } catch (error) {
     console.error(chalk.red('Error creating project:'), error);
     process.exit(1);
