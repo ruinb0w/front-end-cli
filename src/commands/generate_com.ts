@@ -2,12 +2,13 @@ import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 import { findProjectRoot } from "../utils/file";
+import { generateComTemplate } from "../templates/component"
 
-export async function generateViewCommand(type: string, componentName: string) {
+export async function generateComCommand(componentName: string) {
   // Validate the input format (must be PascalCase, e.g., AbcDef)
   const pascalCaseRegex = /^[A-Z][a-z0-9]+([A-Z][a-z0-9]+)*$/;
   if (!pascalCaseRegex.test(componentName)) {
-    console.error(chalk.red(`Error: Component name ${type} "${componentName}" must be in PascalCase (e.g., AbcDef)`));
+    console.error(chalk.red(`Error: Component name "${componentName}" must be in PascalCase (e.g., AbcDef)`));
     process.exit(1);
   }
 
@@ -31,17 +32,7 @@ export async function generateViewCommand(type: string, componentName: string) {
     if (!fs.existsSync(componentFilePath)) {
       // Convert PascalCase to kebab-case (e.g., AbcDef -> abc-def)
       const kebabCaseName = componentName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-      const componentContent = `<script setup lang="ts">
-
-</script>
-
-<template>
-  <div class="${kebabCaseName}">
-    ${kebabCaseName}
-  </div>
-</template>
-
-<style lang="scss" scoped></style>`;
+      const componentContent = generateComTemplate(kebabCaseName);
 
       fs.writeFileSync(componentFilePath, componentContent);
       console.log(chalk.green(`Component ${componentName} created successfully at ${componentFilePath}`));

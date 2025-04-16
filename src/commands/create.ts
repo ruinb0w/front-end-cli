@@ -34,7 +34,16 @@ export async function createCommand(projectName: string, options: any) {
     console.log(chalk.blue(`Cloning template from ${templateUrl}...`));
     await execa('git', ['clone', templateUrl, projectName]);
 
-    // 4. 初始化新仓库
+    // 4. 删除已有的.git目录（如果存在）
+    const fs = await import('fs');
+    const path = await import('path');
+    const gitDir = path.join(projectName, '.git');
+    if (fs.existsSync(gitDir)) {
+      console.log(chalk.blue('Removing existing .git directory...'));
+      fs.rmSync(gitDir, { recursive: true, force: true });
+    }
+
+    // 5. 初始化新仓库
     console.log(chalk.blue('Initializing new repository...'));
     await execa('git', ['init'], { cwd: projectName });
 
