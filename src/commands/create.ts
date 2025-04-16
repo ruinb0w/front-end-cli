@@ -17,6 +17,7 @@ export async function createCommand(projectName: string, options: any) {
     if (!templateUrl) {
       const templates = [
         { name: 'vue3', value: 'https://github.com/ruinb0w/vue3-template.git' },
+        { name: 'nextjs', value: 'https://github.com/ruinb0w/nextjs-template.git' },
       ];
 
       const answers = await inquirer.prompt([
