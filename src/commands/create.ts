@@ -16,8 +16,8 @@ export async function createCommand(projectName: string, options: any) {
     let templateUrl = options.template;
     if (!templateUrl) {
       const templates = [
-        { name: 'vue3', value: 'https://github.com/ruinb0w/vue3-template.git' },
-        { name: 'nextjs', value: 'https://github.com/ruinb0w/nextjs-template.git' },
+        { name: 'vue3(for mobile, pc, admin)', value: 'https://github.com/ruinb0w/vue3-template.git' },
+        { name: 'nextjs(for official website)', value: 'https://github.com/ruinb0w/nextjs-template.git' },
       ];
 
       const answers = await inquirer.prompt([
@@ -50,9 +50,9 @@ export async function createCommand(projectName: string, options: any) {
 
     console.log(chalk.green(`Project ${projectName} created successfully!`));
     console.log();
-    console.log(chalk.blue('Usage:'));
-    console.log(chalk.blue(`  cd ${projectName}`));
-    console.log(chalk.blue(`  yarn`));
+    console.log('Usage:');
+    console.log(`  cd ${projectName}`);
+    console.log(`  yarn`);
   } catch (error) {
     console.error(chalk.red('Error creating project:'), error);
     process.exit(1);
